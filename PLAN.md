@@ -50,17 +50,17 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 
 ## Phase 1: Project setup and deploy pipeline
 
-- [ ] `npm create vite@latest doughttega -- --template react-ts`
-- [ ] Clean out template boilerplate; strict TS on
-- [ ] `npm i styled-components` (v6 ships its own types)
-- [ ] Fonts: `npm i @fontsource/space-mono @fontsource/space-grotesk` (self-hosted Google Fonts; import only the weights used in Figma)
-- [ ] ESLint + Prettier (optional but quick)
-- [ ] Vitest for the market logic (`npm i -D vitest`)
-- [ ] Set Vite `base` (`/<repo-name>/` for project pages, `/` for custom domain or user site)
-- [ ] Create GitHub repo and push
-- [ ] Add `.github/workflows/deploy.yml` (build → `actions/upload-pages-artifact` → `actions/deploy-pages`)
-- [ ] Settings → Pages → Source: GitHub Actions
-- [ ] **Deploy the empty skeleton now** and confirm the live URL works
+- [x] `npm create vite@latest doughttega -- --template react-ts`
+- [x] Clean out template boilerplate; strict TS on
+- [x] `npm i styled-components` (v6 ships its own types)
+- [x] Fonts: `npm i @fontsource/space-mono @fontsource/space-grotesk` (self-hosted Google Fonts; import only the weights used in Figma)
+- [x] ESLint + Prettier (optional but quick)
+- [x] Vitest for the market logic (`npm i -D vitest`)
+- [x] Set Vite `base` (`/<repo-name>/` for project pages, `/` for custom domain or user site)
+- [x] Create GitHub repo and push
+- [x] Add `.github/workflows/deploy.yml` (build → `actions/upload-pages-artifact` → `actions/deploy-pages`)
+- [x] Settings → Pages → Source: GitHub Actions
+- [x] **Deploy the empty skeleton now** and confirm the live URL works
 - [ ] Custom domain (optional): `public/CNAME`, DNS records, enforce HTTPS
 
 ## Phase 2: Build: functionality, structure and layout (unstyled), one section at a time
