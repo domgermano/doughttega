@@ -4,6 +4,7 @@ Static single-page site for Doughttega, "The Biscuit Deli" (artisanal ready-to-b
 Design source of truth: Figma (accessible to Claude Code via the Figma MCP). Keep exported mockups in `docs/design/` as a backup reference.
 
 ## Stack and constraints
+
 - Vite + React + TypeScript + **styled-components**, deployed to GitHub Pages
 - Single page, no routing, no backend, no database
 - Order of work: **structure + layout → visual styling → analytics + polish → launch → embellishments (3D netting)**
@@ -12,7 +13,9 @@ Design source of truth: Figma (accessible to Claude Code via the Figma MCP). Kee
 - Not in scope for now: ordering/buying info (revisit early next year), allergen info (on product labels), social links (add to footer later)
 
 ## Sections
+
 Seven sections, in page order. These are the units of work in Phases 2 and 3.
+
 1. **Header**: logo SVG (top right on desktop, centred on mobile), title "Doughttega: The Biscuit Deli", tagline
 2. **Market grid**: Queen Victoria Christmas Market (Wed nights, 26 Nov – 16 Dec), Good Food and Wine Christmas Market (03–06 Dec), Dockland Farmers Market (14 Dec), Heide Farmers Market (15 Dec). NEXT tags are derived from dates (see Phase 2). Mobile shows the first card plus a "See more" toggle that reveals the rest, stacked.
 3. **Doughttega hero**: giant edge-to-edge "DOUGHTTEGA" wordmark (SVG) with the red "NOT HOT YET" rotating sticker
@@ -22,8 +25,10 @@ Seven sections, in page order. These are the units of work in Phases 2 and 3.
 7. **Footer**: small logo on gold bar
 
 ## How we work (important for Claude Code)
+
 This applies to **Phases 2 and 3**, as two separate passes over the same seven sections:
-- **Phase 2 (build):** build each section one at a time, **unstyled**. Goal is correct functionality, semantic structure and *structural CSS only*: layout (flex + grid), spacing needed for layout, and responsiveness across breakpoints. No colours, fonts, textures or decoration yet.
+
+- **Phase 2 (build):** build each section one at a time, **unstyled**. Goal is correct functionality, semantic structure and _structural CSS only_: layout (flex + grid), spacing needed for layout, and responsiveness across breakpoints. No colours, fonts, textures or decoration yet.
 - **Phase 3 (style):** go back through each section one at a time and apply visual styling (tokens, typography, colour, texture, decoration).
 - **After every section, in both phases, stop and wait for the developer to QA it in the browser before starting the next.** Never build or style the whole page in one pass.
 - The developer is a designer with solid CSS skills and will refine structure and styling by hand. Keep markup and styles simple, readable and easy to edit: small components, clear names, tokens instead of magic values, minimal cleverness.
@@ -33,16 +38,18 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 ---
 
 ## Phase 0: Decisions and assets (before coding)
-- [ ] Fix copy typos in the mockup (heading says "BISCIUT DELI", should be "Biscuit"; confirm "Heide" spelling)
-- [ ] **Verify market dates and weekdays.** In 2026, 26 Nov is a Thursday and 14/15 Dec are Mon/Tue, which doesn't match "Wednesday Nights" / the weekdays in the mockup. Confirm the year and dates.
-- [ ] Export from Figma: logo SVG, edge-to-edge wordmark SVG, biscuit log netting SVG, favicon, paper texture
-- [ ] Prepare paper texture: light, near-greyscale, ~2000px wide, WebP ~70% quality, ideally under 300KB (or a seamless ~1000px tile)
-- [ ] Check Figma styles are tidy and named (colours + typography scale) so tokens can be pulled cleanly
+
+- [x] Fix copy typos in the mockup (heading says "BISCIUT DELI", should be "Biscuit"; confirm "Heide" spelling)
+- [x] **Verify market dates and weekdays.** In 2026, 26 Nov is a Thursday and 14/15 Dec are Mon/Tue, which doesn't match "Wednesday Nights" / the weekdays in the mockup. Confirm the year and dates.
+- [x] Export from Figma: logo SVG, edge-to-edge wordmark SVG, biscuit log netting SVG, favicon, paper texture
+- [x] Prepare paper texture: light, near-greyscale, ~2000px wide, WebP ~70% quality, ideally under 300KB (or a seamless ~1000px tile)
+- [x] Check Figma styles are tidy and named (colours + typography scale) so tokens can be pulled cleanly
 - [ ] Gingerbread house template PDF ready for `/public`
 - [ ] Decide GitHub repo name and whether there's a custom domain (affects Vite `base`)
-- [ ] Pick an analytics tool (Cloudflare Web Analytics, Plausible or Umami; cookie-free)
+- [x] Pick an analytics tool (Umami)
 
 ## Phase 1: Project setup and deploy pipeline
+
 - [ ] `npm create vite@latest doughttega -- --template react-ts`
 - [ ] Clean out template boilerplate; strict TS on
 - [ ] `npm i styled-components` (v6 ships its own types)
@@ -57,7 +64,9 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 - [ ] Custom domain (optional): `public/CNAME`, DNS records, enforce HTTPS
 
 ## Phase 2: Build: functionality, structure and layout (unstyled), one section at a time
+
 Setup:
+
 - [ ] Folder layout: `src/components`, `src/data`, `src/assets`, `src/styles`, `src/utils`
 - [ ] Typed data files:
   - [ ] `markets.ts`: `{ name, dates (display string), start (ISO), end (ISO) }`
@@ -73,6 +82,7 @@ Setup:
   - [ ] Vitest cases: before all, during one, during overlap (3–6 Dec), between markets, after all
 
 Sections (build each one unstyled, with layout and responsiveness working, then **stop for QA**):
+
 - [ ] 1. Header (logo placement, title, tagline; logo moves top-right → centred on mobile) → QA
 - [ ] 2. Market grid → QA
   - 3-up grid on desktop, stacked on mobile; NEXT tag (`isNext`) rendered as plain text/element
@@ -90,7 +100,9 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
 - [ ] Whole page works and reflows correctly at ~375, 768, 1280, 1920 with no visual styling
 
 ## Phase 3: Style (styled-components): visual styling, one section at a time
+
 Foundations first:
+
 - [ ] Pull colours and typography scale from Figma styles via the Figma MCP
 - [ ] Tokens as CSS custom properties in `createGlobalStyle` (`src/styles/GlobalStyle.ts`): colours (deep green, mint, gold, dark olive, red-orange, paper), type scale (Space Grotesk for headings, Space Mono for body, sizes and line heights from Figma), spacing, borders
 - [ ] No raw hex values or magic numbers in components; use tokens
@@ -108,6 +120,7 @@ Foundations first:
   Unsupported browsers just get flat mint. Avoid `background-attachment: fixed`. Avoid a full-page fixed overlay (mobile Safari jank).
 
 Then style each section, **stop for QA** after each:
+
 - [ ] 1. Header → QA
 - [ ] 2. Market grid (cards, NEXT badge) → QA
 - [ ] 3. Doughttega hero (wordmark colour via token / `currentColor`, rotated circular "NOT HOT YET" sticker) → QA
@@ -119,6 +132,7 @@ Then style each section, **stop for QA** after each:
 - [ ] Final responsive pass at ~375, 768, 1280, 1920
 
 ## Phase 4: Analytics and launch polish → **LAUNCH**
+
 - [ ] Add analytics script to `index.html` (cookie-free tool chosen in Phase 0)
 - [ ] Track custom events: template download click, "See more" toggle
 - [ ] `<title>`, meta description, `lang="en-AU"`, theme-color
@@ -135,6 +149,7 @@ Then style each section, **stop for QA** after each:
 - [ ] **Ship the polished static version**
 
 ## Phase 5: Embellishments (after launch)
+
 - [ ] Decide approach: `three` + `@react-three/fiber` (+ `drei`) vs raw three.js
 - [ ] Build the 3D netted log: capsule geometry + grid/wireframe netting, white lines on transparent background, knotted ends
 - [ ] Slow auto-rotation; optional drag-to-rotate
@@ -146,11 +161,13 @@ Then style each section, **stop for QA** after each:
 - [ ] Other ideas (optional, reduced-motion aware): sticker spin, wordmark hover, scroll reveals
 
 ## Later (parked)
+
 - [ ] Buying / contact info (revisit early next year based on sales and traffic)
 - [ ] Social links in footer
 - [ ] Past-season messaging for next year's markets
 
 ## Notes for Claude Code
+
 - Phases 2 and 3 are separate passes: build unstyled first (functionality, structure, flex/grid layout, responsiveness), then style. One section at a time in both, stop for QA after each section; one phase at a time, stop for review at the end of each
 - Keep components small, presentational and easy for a designer to edit by hand; all copy and dates come from `src/data/*`
 - In Phase 3, all colours, fonts, spacing come from tokens (sourced from Figma styles); no raw hex values in component styles
