@@ -12,6 +12,13 @@ Design source of truth: Figma (accessible to Claude Code via the Figma MCP). Kee
 - Content (markets, steps, serves) lives in typed data files, not hardcoded in JSX
 - Not in scope for now: ordering/buying info (revisit early next year), allergen info (on product labels), social links (add to footer later)
 
+## Designs
+
+Designs have been created in Figma. Use the Figma mcp to inspect designs and elements
+
+- Desktop: https://www.figma.com/design/if5Oz6jbiwyhC7QRC4LoNg/%F0%9F%8D%AA-Doughttega?node-id=404-1760&t=wrdGaXuTZsXXhgK7-4
+- Mobile: https://www.figma.com/design/if5Oz6jbiwyhC7QRC4LoNg/%F0%9F%8D%AA-Doughttega?node-id=398-1015&t=wrdGaXuTZsXXhgK7-4
+
 ## Sections
 
 Seven sections, in page order. These are the units of work in Phases 2 and 3.
@@ -45,7 +52,7 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 - [x] Prepare paper texture: light, near-greyscale, ~2000px wide, WebP ~70% quality, ideally under 300KB (or a seamless ~1000px tile)
 - [x] Check Figma styles are tidy and named (colours + typography scale) so tokens can be pulled cleanly
 - [ ] Gingerbread house template PDF ready for `/public`
-- [ ] Decide GitHub repo name and whether there's a custom domain (affects Vite `base`)
+- [x] Decide GitHub repo name and whether there's a custom domain (affects Vite `base`)
 - [x] Pick an analytics tool (Umami)
 
 ## Phase 1: Project setup and deploy pipeline
@@ -67,23 +74,23 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 
 Setup:
 
-- [ ] Folder layout: `src/components`, `src/data`, `src/assets`, `src/styles`, `src/utils`
-- [ ] Typed data files:
-  - [ ] `markets.ts`: `{ name, dates (display string), start (ISO), end (ISO) }`
-  - [ ] `steps.ts`: how-to-eat steps
-  - [ ] `serves.ts`: bakes & serves items + storage note
-- [ ] Minimal global structure: CSS reset and a typed breakpoints theme (`src/styles/theme.ts`, `ThemeProvider`, `styled.d.ts`) so layout can be responsive from the start
-- [ ] **Market status logic**, one pure function `getMarketStatus(markets, now)` in `src/utils`:
-  - [ ] Use the Melbourne calendar date (`Australia/Melbourne`), not UTC
-  - [ ] Past: a market whose `end` is before today is removed from the list
-  - [ ] Next: every market active today gets the NEXT tag; if none are active, the earliest upcoming one does. Overlapping markets therefore show two NEXT tags.
-  - [ ] Range rule only (a market holds NEXT across its whole start–end range). Revisit if it feels wrong in testing.
-  - [ ] No markets left → "see you next season" line and no toggle
-  - [ ] Vitest cases: before all, during one, during overlap (3–6 Dec), between markets, after all
+- [x] Folder layout: `src/components`, `src/data`, `src/assets`, `src/styles`, `src/utils`
+- [x] Typed data files:
+  - [x] `markets.ts`: `{ name, dates (display string), start (ISO), end (ISO) }`
+  - [x] `steps.ts`: how-to-eat steps
+  - [x] `serves.ts`: bakes & serves items + storage note
+- [x] Minimal global structure: CSS reset and a typed breakpoints theme (`src/styles/theme.ts`, `ThemeProvider`, `styled.d.ts`) so layout can be responsive from the start
+- [x] **Market status logic**, one pure function `getMarketStatus(markets, now)` in `src/utils`:
+  - [x] Use the Melbourne calendar date (`Australia/Melbourne`), not UTC
+  - [x] Past: a market whose `end` is before today is removed from the list
+  - [x] Next: every market active today gets the NEXT tag; if none are active, the earliest upcoming one does. Overlapping markets therefore show two NEXT tags.
+  - [x] Range rule only (a market holds NEXT across its whole start–end range). Revisit if it feels wrong in testing.
+  - [x] No markets left → "see you next season" line and no toggle
+  - [x] Vitest cases: before all, during one, during overlap (3–6 Dec), between markets, after all
 
 Sections (build each one unstyled, with layout and responsiveness working, then **stop for QA**):
 
-- [ ] 1. Header (logo placement, title, tagline; logo moves top-right → centred on mobile) → QA
+- [x] 1. Header (logo placement, title, tagline; logo moves top-right → centred on mobile) → QA
 - [ ] 2. Market grid → QA
   - 3-up grid on desktop, stacked on mobile; NEXT tag (`isNext`) rendered as plain text/element
   - "See more" toggle: mobile only; reveals the remaining cards stacked vertically; `<button aria-expanded>`; hidden when only one market remains. Desktop: all cards always visible.

@@ -1,8 +1,11 @@
+import Header from './components/Header'
+
 function App() {
   return (
-    <main>
-      <p>Doughttega</p>
-    </main>
+    <>
+      <Header />
+      <main>{/* sections 2–6 */}</main>
+    </>
   )
 }
 
