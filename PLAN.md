@@ -146,17 +146,23 @@ Then style each section, **stop for QA** after each:
 - [x] Tidy README (run, build, deploy, how to edit `markets.ts`)
 - [ ] **Ship the polished static version**
 
-## Phase 5: Embellishments (after launch)
+## Phase 5: 3D scroll-driven net
 
-- [ ] Decide approach: `three` + `@react-three/fiber` (+ `drei`) vs raw three.js
-- [ ] Build the 3D netted log: capsule geometry + grid/wireframe netting, white lines on transparent background, knotted ends
-- [ ] Slow auto-rotation; optional drag-to-rotate
-- [ ] **Lazy-load** the 3D chunk (`React.lazy` / dynamic import)
-- [ ] Keep the static SVG as the fallback (no WebGL, loading state, reduced motion)
-- [ ] Respect `prefers-reduced-motion` (no auto-rotate)
-- [ ] Pause rendering offscreen (IntersectionObserver); cap pixel ratio at 2
-- [ ] Test on a mid-range phone; re-run Lighthouse to confirm no regression
-- [ ] Other ideas (optional, reduced-motion aware): sticker spin, wordmark hover, scroll reveals
+### Decisions
+
+- **Placement:** replaces the static `biscuit_log.svg` inside the existing NettingFigure section — scrolls normally with the page, rotates as it passes through the viewport
+- **Rotation:** scroll-driven (not auto-rotate). Raw `scroll` event updates a target rotation ref; `useFrame` eases toward it each frame (`rot += (target - rot) * 0.1`). `frameloop="demand"` + `invalidate()` on scroll so we only render when something changes.
+- **Look:** front-only (depth mask — invisible capsule writes to depth buffer, hides back strands). White constant-width lines via drei's `<Line>`. No lighting, shadows or materials.
+- **Geometry:** procedural capsule — rings around circumference + strands along length, seeded noise for hand-drawn wonk. Reference: `src/assets/biscuit_log.svg` (~35–40 rings, ~20 strands, 1:3.5 ratio, knot at each end). Blender model remains an option if the procedural result doesn't look right.
+- **Stack additions:** `three`, `@react-three/fiber`, `@react-three/drei` — nothing else
+- **Fallback:** static `biscuit_log.svg` for no-WebGL, loading state, and `prefers-reduced-motion`
+
+### Build order (prototype before integrating)
+
+- [ ] **Step 1 — Prototype:** build net geometry in a standalone `src/components/NetPrototype.tsx` with a rotation slider. Get the shape, proportions and wonk right against the reference SVG. Stop and review.
+- [ ] **Step 2 — Scroll:** replace slider with scroll-driven rotation + easing. Review feel.
+- [ ] **Step 3 — Integrate:** lazy-load into `NettingFigure.tsx`, wire up fallback, remove prototype component.
+- [ ] **Step 4 — Performance:** confirm `frameloop="demand"`, dpr capped at `[1, 2]`, pause offscreen with IntersectionObserver. Test on a mid-range phone; re-run Lighthouse.
 
 ## Later (parked)
 
