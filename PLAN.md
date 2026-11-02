@@ -24,7 +24,7 @@ Designs have been created in Figma. Use the Figma mcp to inspect designs and ele
 Seven sections, in page order. These are the units of work in Phases 2 and 3.
 
 1. **Header**: logo SVG (top right on desktop, centred on mobile), title "Doughttega: The Biscuit Deli", tagline
-2. **Market grid**: Queen Victoria Christmas Market (Wed nights, 26 Nov – 16 Dec), Good Food and Wine Christmas Market (03–06 Dec), Dockland Farmers Market (14 Dec), Heide Farmers Market (15 Dec). NEXT tags are derived from dates (see Phase 2). Mobile shows the first card plus a "See more" toggle that reveals the rest, stacked.
+2. **Market grid**: Queen Victoria Christmas Market (one card per night: 26 Nov, then Wednesdays 2, 9, 16 Dec), Good Food and Wine Christmas Market (03–06 Dec), Dockland Farmers Market (14 Dec), Heide Farmers Market (15 Dec). NEXT tags are derived from dates (see Phase 2). Mobile shows the first card plus a "See more" toggle that reveals the rest, stacked.
 3. **Doughttega hero**: giant edge-to-edge "DOUGHTTEGA" wordmark (SVG) with the red "NOT HOT YET" rotating sticker
 4. **Netting figure/graphic**: gold band with repeating background pills, netted biscuit log (static SVG), caption "Fig. 1.1: Ready-to-bake biscuit log"
 5. **Instructions**: "How to eat" (4 numbered steps) and "Bakes & serves" (bullet list, storage note, "Gingerbread house template" download button)

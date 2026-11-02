@@ -23,12 +23,17 @@ const Wordmark = styled.img`
   transform: scale(1.01);
 `;
 
-const Sticker = styled.img`
+const StickerContainer = styled.div`
+  background: transparent;
   position: absolute;
   top: -${(p) => p.theme.space[6]};
   right: 8%;
-  width: ${(p) => p.theme.space[9]};
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.25));
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 1000px;
+`;
+
+const Sticker = styled.img`
+  vertical-align: bottom;
   animation: ${spin} 12s linear infinite;
 `;
 
@@ -38,7 +43,9 @@ function WordmarkHero() {
       <Overflow>
         <Wordmark src={wordmark} alt="Doughttega" />
       </Overflow>
-      <Sticker src={sticker} alt="" aria-hidden="true" />
+      <StickerContainer>
+        <Sticker src={sticker} alt="" aria-hidden="true" />
+      </StickerContainer>
     </HeroSection>
   );
 }

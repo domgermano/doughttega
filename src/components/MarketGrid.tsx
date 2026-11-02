@@ -125,7 +125,7 @@ function MarketGrid() {
         <Grid $minColWidth="360px" $gap={6}>
           {statusMarkets.map((market, i) => (
             <MarketCard
-              key={market.name}
+              key={`${market.name}-${market.start}`}
               market={market}
               mobileHidden={i > 0 && !expanded}
             />
