@@ -110,21 +110,12 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
 
 Foundations first:
 
-- [ ] Pull colours and typography scale from Figma styles via the Figma MCP
-- [ ] Tokens as CSS custom properties in `createGlobalStyle` (`src/styles/GlobalStyle.ts`): colours (deep green, mint, gold, dark olive, red-orange, paper), type scale (Space Grotesk for headings, Space Mono for body, sizes and line heights from Figma), spacing, borders
+- [x] Pull colours and typography scale from Figma styles via the Figma MCP
+- [x] Tokens as CSS custom properties in `createGlobalStyle` (`src/styles/GlobalStyle.ts`): colours (deep green, mint, gold, dark olive, red-orange, paper), type scale (Space Grotesk for headings, Space Mono for body, sizes and line heights from Figma), spacing, borders
 - [ ] No raw hex values or magic numbers in components; use tokens
 - [ ] Use transient props (`$isNext`) so styling props don't reach the DOM
-- [ ] Base typography on the global style
-- [ ] Paper texture helper (applies per section, so it can sit on any section):
-  ```css
-  background-color: var(--color-mint);
-  @supports (background-blend-mode: multiply) {
-    background-image: url(paper.webp);
-    background-size: cover;
-    background-blend-mode: multiply;
-  }
-  ```
-  Unsupported browsers just get flat mint. Avoid `background-attachment: fixed`. Avoid a full-page fixed overlay (mobile Safari jank).
+- [x] Base typography on the global style
+- [x] Paper texture — applied once on `body` via `@supports (background-blend-mode: multiply)`; sections sit transparently on top. Per-section helper deferred.
 
 Then style each section, **stop for QA** after each:
 
