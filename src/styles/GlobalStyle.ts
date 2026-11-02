@@ -17,6 +17,18 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :focus-visible {
+    outline: 2px solid ${(p) => p.theme.colors.mustard};
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
   body {
     font-family: ${(p) => p.theme.fonts.body};
     font-size: ${(p) => p.theme.type.bodyM.size};

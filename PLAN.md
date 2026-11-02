@@ -103,8 +103,8 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
   - Download link to the PDF in `public/`, using `import.meta.env.BASE_URL`
 - [x] 6. Pattern graphic (checkerboard strip; structure and tiling at any width, via CSS gradients or SVG) → QA
 - [x] 7. Footer (logo on bar) → QA
-- [ ] Semantic landmarks, one `h1`, sensible heading order
-- [ ] Whole page works and reflows correctly at ~375, 768, 1280, 1920 with no visual styling
+- [x] Semantic landmarks, one `h1`, sensible heading order
+- [x] Whole page works and reflows correctly at ~375, 768, 1280, 1920 with no visual styling
 
 ## Phase 3: Style (styled-components): visual styling, one section at a time
 
@@ -112,8 +112,8 @@ Foundations first:
 
 - [x] Pull colours and typography scale from Figma styles via the Figma MCP
 - [x] Tokens as CSS custom properties in `createGlobalStyle` (`src/styles/GlobalStyle.ts`): colours (deep green, mint, gold, dark olive, red-orange, paper), type scale (Space Grotesk for headings, Space Mono for body, sizes and line heights from Figma), spacing, borders
-- [ ] No raw hex values or magic numbers in components; use tokens
-- [ ] Use transient props (`$isNext`) so styling props don't reach the DOM
+- [x] No raw hex values or magic numbers in components; use tokens
+- [x] Use transient props (`$isNext`) so styling props don't reach the DOM
 - [x] Base typography on the global style
 - [x] Paper texture — applied once on `body` via `@supports (background-blend-mode: multiply)`; sections sit transparently on top. Per-section helper deferred.
 
@@ -126,24 +126,24 @@ Then style each section, **stop for QA** after each:
 - [x] 5. Instructions (dark green panels, mint sub-headers, button) → QA
 - [x] 6. Pattern graphic (green/mint colours) → QA
 - [x] 7. Footer → QA
-- [ ] Compare against Figma side by side and fix drift
-- [ ] Final responsive pass at ~375, 768, 1280, 1920
+- [x] Compare against Figma side by side and fix drift
+- [x] Final responsive pass at ~375, 768, 1280, 1920
 
 ## Phase 4: Analytics and launch polish → **LAUNCH**
 
 - [ ] Add analytics script to `index.html` (cookie-free tool chosen in Phase 0)
 - [ ] Track custom events: template download click, "See more" toggle
-- [ ] `<title>`, meta description, `lang="en-AU"`, theme-color
-- [ ] Open Graph / Twitter card image
-- [ ] Favicon + apple-touch-icon from logo
-- [ ] Alt text for meaningful images; decorative ones `alt=""` / `aria-hidden`
+- [x] `<title>`, meta description, `lang="en-AU"`, theme-color
+- [x] Open Graph / Twitter card image
+- [x] Favicon + apple-touch-icon from logo
+- [x] Alt text for meaningful images; decorative ones `alt=""` / `aria-hidden`
 - [ ] Colour contrast check (gold on mint and mint on green are the risky pairs)
-- [ ] Keyboard navigation and focus styles
-- [ ] Optimise images and SVGs; check bundle size
+- [x] Keyboard navigation and focus styles
+- [x] Optimise images and SVGs; check bundle size
 - [ ] Lighthouse pass (aim 90+)
 - [ ] Test Safari/iOS, Chrome, Firefox
 - [ ] Check the live URL, template download, and all market info once more
-- [ ] Tidy README (run, build, deploy, how to edit `markets.ts`)
+- [x] Tidy README (run, build, deploy, how to edit `markets.ts`)
 - [ ] **Ship the polished static version**
 
 ## Phase 5: Embellishments (after launch)
