@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 
     @supports (background-blend-mode: multiply) {
       background-image: url(${paperTexture});
-      background-size: 1000px;
+      background-size: 1300px;
       background-position: center;
       background-blend-mode: multiply;
     }

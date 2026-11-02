@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import biscuitLog from "../assets/biscuit_log.svg";
+import Text from "./layout/Text";
 
 const NettingSection = styled.section`
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: lightgrey;
+  background: ${(p) => p.theme.colors.mustard};
   z-index: -1;
 `;
 
@@ -21,7 +22,7 @@ const PillContainer = styled.div`
     flex: 1 0 0;
     height: 100%;
     border-radius: 1000px;
-    outline: 1px dashed currentColor;
+    background: ${(p) => p.theme.colors.darkMustard};
 
     &:nth-child(n + 3) {
       display: none;
@@ -55,6 +56,7 @@ const NettingContent = styled.figure`
   margin: auto;
   padding: 0 ${(p) => p.theme.space[8]} ${(p) => p.theme.space[3]};
   gap: ${(p) => p.theme.space[5]};
+  color: ${(p) => p.theme.colors.white};
 `;
 
 const BiscuitLog = styled.img`
@@ -87,7 +89,9 @@ function NettingFigure() {
       </PillContainer>
       <NettingContent>
         <BiscuitLog src={biscuitLog} alt="Ready-to-bake biscuit log" />
-        <figcaption>Fig. 1.1: Ready-to-bake biscuit log</figcaption>
+        <Text skin="bodyS" as="figcaption">
+          Fig. 1.1: Ready-to-bake biscuit log
+        </Text>
       </NettingContent>
     </NettingSection>
   );
