@@ -124,8 +124,8 @@ Then style each section, **stop for QA** after each:
 - [x] 3. Doughttega hero (wordmark colour via token / `currentColor`, rotated circular "NOT HOT YET" sticker) → QA
 - [x] 4. Netting figure/graphic (gold band, dark olive pills, white netting lines, caption) → QA
 - [x] 5. Instructions (dark green panels, mint sub-headers, button) → QA
-- [ ] 6. Pattern graphic (green/mint colours) → QA
-- [ ] 7. Footer → QA
+- [x] 6. Pattern graphic (green/mint colours) → QA
+- [x] 7. Footer → QA
 - [ ] Compare against Figma side by side and fix drift
 - [ ] Final responsive pass at ~375, 768, 1280, 1920
 

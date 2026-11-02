@@ -3,6 +3,7 @@ import wordmark from "../assets/wordmark_clean.svg";
 import BoundedBox from "./layout/BoundedBox";
 
 const FooterOuter = styled.footer`
+  background: ${(p) => p.theme.colors.mustard};
   padding-block: ${(p) => p.theme.space[6]};
 `;
 

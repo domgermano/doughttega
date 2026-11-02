@@ -4,8 +4,8 @@ const Strip = styled.section`
   width: 100%;
   height: 248px;
   background-image:
-    linear-gradient(to right, black 50%, lightgrey 50%),
-    linear-gradient(to right, lightgrey 50%, black 50%);
+    linear-gradient(to right, ${(p) => p.theme.colors.darkGreen} 50%, ${(p) => p.theme.colors.mint} 50%),
+    linear-gradient(to right, ${(p) => p.theme.colors.mint} 50%, ${(p) => p.theme.colors.darkGreen} 50%);
   background-size:
     calc(100% / 5) 80%,
     calc(100% / 5);
