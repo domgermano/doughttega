@@ -1,29 +1,51 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import type { DefaultTheme } from "styled-components";
 import { steps, stepsIntro } from "../data/steps";
 import { serveItems, servesIntro, storageNote } from "../data/serves";
 import BoundedBox from "./layout/BoundedBox";
+import Button from "./layout/Button";
 import Grid from "./layout/Grid";
+import Text from "./layout/Text";
+import DownloadIcon from "./icons/DownloadIcon";
+
+type SpaceKey = keyof DefaultTheme["space"];
 
 // --- Shared panel pieces ---
 
 const Panel = styled.div`
   display: flex;
   flex-direction: column;
+  color: ${(p) => p.theme.colors.mint};
 `;
 
 const PanelTitle = styled.div`
   padding: ${(p) => p.theme.space[5]};
-  border: 1px solid currentColor;
+  border: 1px solid ${(p) => p.theme.colors.mint};
 `;
 
 const PanelSubtitle = styled.div`
   padding: ${(p) => p.theme.space[3]} ${(p) => p.theme.space[5]};
+  background: ${(p) => p.theme.colors.mint};
+  color: ${(p) => p.theme.colors.darkGreen};
 `;
 
-const PanelBody = styled.div`
+const PanelBody = styled.div<{ $gap?: SpaceKey }>`
   flex: 1;
   padding: ${(p) => p.theme.space[5]};
-  border: 1px solid currentColor;
+  border: 1px solid ${(p) => p.theme.colors.mint};
+
+  ol,
+  ul {
+    padding-inline-start: ${(p) => p.theme.space[6]};
+  }
+
+  ${(p) =>
+    p.$gap &&
+    css`
+      display: flex;
+      flex-direction: column;
+      gap: ${p.theme.space[p.$gap]};
+    `}
 `;
 
 // --- How to eat ---
@@ -32,10 +54,14 @@ function HowToEat() {
   return (
     <Panel>
       <PanelTitle>
-        <h2>How to eat:</h2>
+        <Text skin="h4" as="h2" uppercase>
+          How to eat:
+        </Text>
       </PanelTitle>
       <PanelSubtitle>
-        <p>{stepsIntro}</p>
+        <Text skin="bodyM" as="p">
+          {stepsIntro}
+        </Text>
       </PanelSubtitle>
       <PanelBody>
         <ol>
@@ -50,14 +76,8 @@ function HowToEat() {
 
 // --- Bakes & serves ---
 
-const DownloadButton = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${(p) => p.theme.space[3]};
-  padding: ${(p) => p.theme.space[4]} ${(p) => p.theme.space[5]};
-  border: 2px solid currentColor;
-  border-radius: 100px;
+const DownloadLink = styled(Button)`
+  width: 100%;
   text-decoration: none;
 `;
 
@@ -65,21 +85,32 @@ function BakesAndServes() {
   return (
     <Panel>
       <PanelTitle>
-        <h2>Bakes &amp; Serves:</h2>
+        <Text skin="h4" as="h2" uppercase>
+          Bakes &amp; Serves:
+        </Text>
       </PanelTitle>
       <PanelSubtitle>
-        <p>{servesIntro}</p>
+        <Text skin="bodyM" as="p">
+          {servesIntro}
+        </Text>
       </PanelSubtitle>
-      <PanelBody>
+      <PanelBody $gap={6}>
         <ul>
           {serveItems.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <p>{storageNote}</p>
-        <DownloadButton href="#" download>
-          ↓ Gingerbread house template
-        </DownloadButton>
+        <Text skin="bodyS" as="p">
+          {storageNote}
+        </Text>
+        <DownloadLink
+          as="a"
+          $color="mustard"
+          href={`${import.meta.env.BASE_URL}gingerbread-house-template.pdf`}
+          download
+        >
+          <DownloadIcon /> Gingerbread house template
+        </DownloadLink>
       </PanelBody>
     </Panel>
   );
@@ -88,6 +119,7 @@ function BakesAndServes() {
 // --- Instructions ---
 
 const InstructionsSection = styled.section`
+  background: ${(p) => p.theme.colors.darkGreen};
   padding-block: ${(p) => p.theme.space[9]};
 `;
 
