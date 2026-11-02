@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import logo from "../assets/ticket_logo.png";
 import BoundedBox from "./layout/BoundedBox";
 import Grid from "./layout/Grid";
 
@@ -25,14 +26,10 @@ const HeaderLogo = styled.div`
   }
 `;
 
-const LogoPlaceholder = styled.div`
+const Logo = styled.img`
+  display: block;
   width: 80px;
-  height: 100px;
-  outline: 1px dashed currentColor;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
+  height: auto;
 `;
 
 function Header() {
@@ -49,8 +46,8 @@ function Header() {
             </p>
           </HeaderText>
           <div />
-          <HeaderLogo aria-label="Doughttega">
-            <LogoPlaceholder>[logo]</LogoPlaceholder>
+          <HeaderLogo>
+            <Logo src={logo} alt="Doughttega" />
           </HeaderLogo>
         </Grid>
       </BoundedBox>
