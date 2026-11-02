@@ -2,13 +2,18 @@ import styled from "styled-components";
 import logo from "../assets/ticket_logo.png";
 import BoundedBox from "./layout/BoundedBox";
 import Grid from "./layout/Grid";
+import Text from "./layout/Text";
 
 const HeaderOuter = styled.header`
   margin-top: ${(p) => p.theme.space[7]};
 `;
 
 const HeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${(p) => p.theme.space[5]};
   text-align: center;
+  color: ${(p) => p.theme.colors.black};
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     text-align: left;
@@ -28,8 +33,8 @@ const HeaderLogo = styled.div`
 
 const Logo = styled.img`
   display: block;
-  width: 80px;
-  height: auto;
+  height: 150px;
+  width: auto;
 `;
 
 function Header() {
@@ -38,12 +43,16 @@ function Header() {
       <BoundedBox>
         <Grid cols={3} gap={5}>
           <HeaderText>
-            <h1>Doughttega: The Biscuit Deli</h1>
-            <p>
+            <Text skin="h4" as="h1" uppercase>
+              Doughttega:
+              <br />
+              The Biscuit Deli
+            </Text>
+            <Text skin="bodyM" as="p">
               Artisanal biscuit dough. Ready to bake. We&apos;ve reinvented the
-              deli drawer – think charcuterie, but with biscuit dough! Coming to
-              a market near you
-            </p>
+              deli drawer — think charcuterie, but with biscuit dough! Coming to
+              a market near you.
+            </Text>
           </HeaderText>
           <div />
           <HeaderLogo>

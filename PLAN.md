@@ -119,7 +119,7 @@ Foundations first:
 
 Then style each section, **stop for QA** after each:
 
-- [ ] 1. Header → QA
+- [x] 1. Header → QA
 - [ ] 2. Market grid (cards, NEXT badge) → QA
 - [ ] 3. Doughttega hero (wordmark colour via token / `currentColor`, rotated circular "NOT HOT YET" sticker) → QA
 - [ ] 4. Netting figure/graphic (gold band, dark olive pills, white netting lines, caption) → QA
