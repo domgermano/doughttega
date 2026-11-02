@@ -6,6 +6,7 @@ const HeroSection = styled.section`
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin-bottom: -${(p) => p.theme.space[6]};
 `;
 
 const Wordmark = styled.img`
