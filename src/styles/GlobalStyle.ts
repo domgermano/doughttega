@@ -8,6 +8,14 @@ import "@fontsource/space-mono/400.css";
 import "@fontsource/space-mono/700.css";
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    font-size: 14px;
+
+    @media (min-width: ${(p) => p.theme.breakpoints.md}) {
+      font-size: 16px;
+    }
+  }
+
   body {
     font-family: ${(p) => p.theme.fonts.body};
     font-size: ${(p) => p.theme.type.bodyM.size};

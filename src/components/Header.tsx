@@ -41,7 +41,7 @@ function Header() {
   return (
     <HeaderOuter>
       <BoundedBox>
-        <Grid cols={3} gap={5}>
+        <Grid $cols={3} $gap={5}>
           <HeaderText>
             <Text skin="h4" as="h1" uppercase>
               Doughttega:

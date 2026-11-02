@@ -95,7 +95,7 @@ function Instructions() {
   return (
     <InstructionsSection>
       <BoundedBox>
-        <Grid cols={2} gap={7}>
+        <Grid $cols={2} $gap={7}>
           <HowToEat />
           <BakesAndServes />
         </Grid>
