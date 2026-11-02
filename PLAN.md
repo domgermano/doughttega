@@ -137,11 +137,11 @@ Then style each section, **stop for QA** after each:
 - [x] Open Graph / Twitter card image
 - [x] Favicon + apple-touch-icon from logo
 - [x] Alt text for meaningful images; decorative ones `alt=""` / `aria-hidden`
-- [ ] Colour contrast check (gold on mint and mint on green are the risky pairs)
+- [x] Colour contrast check (gold on mint and mint on green are the risky pairs)
 - [x] Keyboard navigation and focus styles
 - [x] Optimise images and SVGs; check bundle size
-- [ ] Lighthouse pass (aim 90+)
-- [ ] Test Safari/iOS, Chrome, Firefox
+- [x] Lighthouse pass (aim 90+)
+- [x] Test Safari/iOS, Chrome, Firefox
 - [ ] Check the live URL, template download, and all market info once more
 - [x] Tidy README (run, build, deploy, how to edit `markets.ts`)
 - [ ] **Ship the polished static version**
