@@ -14,6 +14,7 @@ const HeaderText = styled.div`
   gap: ${(p) => p.theme.space[5]};
   text-align: center;
   color: ${(p) => p.theme.colors.black};
+  padding-top: ${(p) => p.theme.space[6]};
 
   @media (min-width: ${(p) => p.theme.breakpoints.md}) {
     text-align: left;
