@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import CheckerboardStrip from './components/CheckerboardStrip'
+import Footer from './components/Footer'
 import Instructions from './components/Instructions'
 import MarketGrid from './components/MarketGrid'
 import NettingFigure from './components/NettingFigure'
@@ -15,8 +16,8 @@ function App() {
         <NettingFigure />
         <Instructions />
         <CheckerboardStrip />
-        {/* section 7 */}
       </main>
+      <Footer />
     </>
   )
 }

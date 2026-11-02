@@ -102,7 +102,7 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
   - Two panels side by side on desktop, stacked on mobile
   - Download link to the PDF in `public/`, using `import.meta.env.BASE_URL`
 - [x] 6. Pattern graphic (checkerboard strip; structure and tiling at any width, via CSS gradients or SVG) → QA
-- [ ] 7. Footer (logo on bar) → QA
+- [x] 7. Footer (logo on bar) → QA
 - [ ] Semantic landmarks, one `h1`, sensible heading order
 - [ ] Whole page works and reflows correctly at ~375, 768, 1280, 1920 with no visual styling
 
