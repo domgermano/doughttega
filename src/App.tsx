@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import CheckerboardStrip from './components/CheckerboardStrip'
 import Instructions from './components/Instructions'
 import MarketGrid from './components/MarketGrid'
 import NettingFigure from './components/NettingFigure'
@@ -13,7 +14,8 @@ function App() {
         <WordmarkHero />
         <NettingFigure />
         <Instructions />
-        {/* section 6 */}
+        <CheckerboardStrip />
+        {/* section 7 */}
       </main>
     </>
   )

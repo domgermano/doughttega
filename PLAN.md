@@ -98,10 +98,10 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
 - [x] 4. Netting figure/graphic → QA
   - Gold band container, background pills, centred log SVG, caption
   - **Pills:** 5 pill `div`s (`aria-hidden`), absolutely positioned flex row; `nth-child` rules step visibility 2 → 3 → 4 → 5 across sm/md/lg
-- [ ] 5. Instructions (How to eat + Bakes & serves) → QA
+- [x] 5. Instructions (How to eat + Bakes & serves) → QA
   - Two panels side by side on desktop, stacked on mobile
   - Download link to the PDF in `public/`, using `import.meta.env.BASE_URL`
-- [ ] 6. Pattern graphic (checkerboard strip; structure and tiling at any width, via CSS gradients or SVG) → QA
+- [x] 6. Pattern graphic (checkerboard strip; structure and tiling at any width, via CSS gradients or SVG) → QA
 - [ ] 7. Footer (logo on bar) → QA
 - [ ] Semantic landmarks, one `h1`, sensible heading order
 - [ ] Whole page works and reflows correctly at ~375, 768, 1280, 1920 with no visual styling
