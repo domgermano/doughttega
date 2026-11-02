@@ -95,7 +95,7 @@ const SeeMoreWrapper = styled.div`
 // --- MarketGrid ---
 
 const MarketSection = styled.section`
-  margin-top: ${(p) => p.theme.space[7]};
+  padding: ${(p) => p.theme.space[7]} 0 ${(p) => p.theme.space[10]} 0;
 `;
 
 function MarketGrid() {
