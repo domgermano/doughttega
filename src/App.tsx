@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import Instructions from './components/Instructions'
 import MarketGrid from './components/MarketGrid'
 import NettingFigure from './components/NettingFigure'
 import WordmarkHero from './components/WordmarkHero'
@@ -11,7 +12,8 @@ function App() {
         <MarketGrid />
         <WordmarkHero />
         <NettingFigure />
-        {/* sections 5–6 */}
+        <Instructions />
+        {/* section 6 */}
       </main>
     </>
   )
