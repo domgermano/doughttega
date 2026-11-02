@@ -1,10 +1,14 @@
 import Header from './components/Header'
+import MarketGrid from './components/MarketGrid'
 
 function App() {
   return (
     <>
       <Header />
-      <main>{/* sections 2–6 */}</main>
+      <main>
+        <MarketGrid />
+        {/* sections 3–6 */}
+      </main>
     </>
   )
 }

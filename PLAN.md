@@ -91,7 +91,7 @@ Setup:
 Sections (build each one unstyled, with layout and responsiveness working, then **stop for QA**):
 
 - [x] 1. Header (logo placement, title, tagline; logo moves top-right → centred on mobile) → QA
-- [ ] 2. Market grid → QA
+- [x] 2. Market grid → QA
   - 3-up grid on desktop, stacked on mobile; NEXT tag (`isNext`) rendered as plain text/element
   - "See more" toggle: mobile only; reveals the remaining cards stacked vertically; `<button aria-expanded>`; hidden when only one market remains. Desktop: all cards always visible.
 - [ ] 3. Doughttega hero (wordmark SVG scaling edge to edge, sticker positioned top-right of the wordmark) → QA
