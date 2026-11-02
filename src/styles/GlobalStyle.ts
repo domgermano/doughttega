@@ -10,6 +10,7 @@ import "@fontsource/space-mono/700.css";
 const GlobalStyle = createGlobalStyle`
   :root {
     font-size: 14px;
+    -webkit-font-smoothing: antialiased;
 
     @media (min-width: ${(p) => p.theme.breakpoints.md}) {
       font-size: 16px;

@@ -52,7 +52,7 @@ const NettingContent = styled.figure`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   padding: 0 ${(p) => p.theme.space[8]} ${(p) => p.theme.space[3]};
   gap: ${(p) => p.theme.space[5]};

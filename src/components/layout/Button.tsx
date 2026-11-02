@@ -26,6 +26,7 @@ const Button = styled.button<{ $color?: Colors }>`
 
   &:hover {
     background: rgba(0, 0, 0, 0.06);
+    transform: translateY(-${(p) => p.theme.space[1]});
   }
 
   &:active {
