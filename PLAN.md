@@ -94,7 +94,7 @@ Sections (build each one unstyled, with layout and responsiveness working, then 
 - [x] 2. Market grid → QA
   - 3-up grid on desktop, stacked on mobile; NEXT tag (`isNext`) rendered as plain text/element
   - "See more" toggle: mobile only; reveals the remaining cards stacked vertically; `<button aria-expanded>`; hidden when only one market remains. Desktop: all cards always visible.
-- [ ] 3. Doughttega hero (wordmark SVG scaling edge to edge, sticker positioned top-right of the wordmark) → QA
+- [x] 3. Doughttega hero (wordmark SVG scaling edge to edge, sticker positioned top-right of the wordmark) → QA
 - [ ] 4. Netting figure/graphic → QA
   - Gold band container, background pills, centred log SVG, caption
   - **Pills:** render ~8 pill `div`s (`aria-hidden`) in a flex container with `overflow: hidden`; reveal more at wider breakpoints via `nth-child` display rules (2 on mobile → 5 on desktop in the mockups)

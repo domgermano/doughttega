@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import MarketGrid from './components/MarketGrid'
+import WordmarkHero from './components/WordmarkHero'
 
 function App() {
   return (
@@ -7,7 +8,8 @@ function App() {
       <Header />
       <main>
         <MarketGrid />
-        {/* sections 3–6 */}
+        <WordmarkHero />
+        {/* sections 4–6 */}
       </main>
     </>
   )
