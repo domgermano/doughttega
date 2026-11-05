@@ -146,17 +146,23 @@ Then style each section, **stop for QA** after each:
 - [x] Tidy README (run, build, deploy, how to edit `markets.ts`)
 - [ ] **Ship the polished static version**
 
-## Phase 5: Embellishments (after launch)
+## Phase 5: 3D scroll-driven net
 
-- [ ] Decide approach: `three` + `@react-three/fiber` (+ `drei`) vs raw three.js
-- [ ] Build the 3D netted log: capsule geometry + grid/wireframe netting, white lines on transparent background, knotted ends
-- [ ] Slow auto-rotation; optional drag-to-rotate
-- [ ] **Lazy-load** the 3D chunk (`React.lazy` / dynamic import)
-- [ ] Keep the static SVG as the fallback (no WebGL, loading state, reduced motion)
-- [ ] Respect `prefers-reduced-motion` (no auto-rotate)
-- [ ] Pause rendering offscreen (IntersectionObserver); cap pixel ratio at 2
-- [ ] Test on a mid-range phone; re-run Lighthouse to confirm no regression
-- [ ] Other ideas (optional, reduced-motion aware): sticker spin, wordmark hover, scroll reveals
+### Decisions
+
+- **Placement:** replaces the static `biscuit_log.svg` inside the existing NettingFigure section — scrolls normally with the page, rotates as it passes through the viewport
+- **Rotation:** scroll-driven (not auto-rotate). Raw `scroll` event updates a target rotation ref; `useFrame` eases toward it each frame (`rot += (target - rot) * 0.1`). `frameloop="demand"` + `invalidate()` on scroll so we only render when something changes.
+- **Look:** front-only (depth mask — invisible `Underlay` mesh writes to the depth buffer, hides back strands). Net is real mesh geometry (Blender wireframe modifier applied on export) with a flat white `meshBasicMaterial`. No lighting, shadows or other materials.
+- **Geometry:** modelled in Blender and exported as `src/assets/net_3d.glb` (~200 KB, positions only). Two objects: `Net` (the netting, with end knots) and `Underlay` (a slightly smaller closed mesh used only as the depth mask). Long axis is X; loaded with drei `useGLTF` and scaled up in code (`MODEL_SCALE`). The earlier procedural capsule approach (rings + strands + seeded noise via drei `<Line>`) was tried and dropped because the result wasn't good enough.
+- **Stack additions:** `three`, `@react-three/fiber`, `@react-three/drei` — nothing else
+- **Fallback:** static `biscuit_log.svg` for no-WebGL, loading state, and `prefers-reduced-motion`
+
+### Build order (prototype before integrating)
+
+- [x] **Step 1 — Prototype:** load the Blender model in a standalone `src/components/NetPrototype.tsx` with sliders for spin plus camera (fov, zoom) and log tilt (yaw, pitch). Shape, proportions and end knots reviewed and approved. Camera settled on **fov 20** (zoom 1, no yaw/pitch).
+- [x] **Step 2 — Scroll:** replaced the slider with scroll-driven momentum (scroll deltas add angular velocity, friction decays it; native passive scroll listener, refs only, `frameloop="demand"`, no new deps). Tuned values: gain 0.05, friction 1, max velocity 2 rad/s. Camera distance 8 at fov 20. Fixed-spin mode kept in the prototype as a fallback if performance disappoints on mobile.
+- [x] **Step 3 — Integrate:** `NetCanvas.tsx` lazy-loaded into `NettingFigure.tsx`. Static `biscuit_log.svg` stays in the layout as the fallback (no WebGL, `prefers-reduced-motion`, loading, load error via error boundary) and fades out once the 3D net is on screen. Camera fits the log to the canvas width at any aspect. Prototype page and component removed; fixed-spin mode kept in `NetCanvas` as an unexposed `mode` prop.
+- [x] **Step 4 — Performance:** `frameloop="demand"` and dpr `[1, 2]` in place; IntersectionObserver pauses scroll input and rendering while the net is offscreen; three.js loads only after page load + idle (`src/utils/whenIdle.ts`) so it stays off the critical path; model loaded with three's `GLTFLoader` (drei no longer needed in the chunk). Lighthouse (local prod build): desktop 97, mobile 77 (81 before the 3D net; TBT ~70 ms, CLS ~0). Lazy chunk is ~968 KB (257 KB gzipped); rewriting without react-three-fiber was considered and parked. Checked on a real phone: smooth.
 
 ## Later (parked)
 
