@@ -152,14 +152,14 @@ Then style each section, **stop for QA** after each:
 
 - **Placement:** replaces the static `biscuit_log.svg` inside the existing NettingFigure section — scrolls normally with the page, rotates as it passes through the viewport
 - **Rotation:** scroll-driven (not auto-rotate). Raw `scroll` event updates a target rotation ref; `useFrame` eases toward it each frame (`rot += (target - rot) * 0.1`). `frameloop="demand"` + `invalidate()` on scroll so we only render when something changes.
-- **Look:** front-only (depth mask — invisible capsule writes to depth buffer, hides back strands). White constant-width lines via drei's `<Line>`. No lighting, shadows or materials.
-- **Geometry:** procedural capsule — rings around circumference + strands along length, seeded noise for hand-drawn wonk. Reference: `src/assets/biscuit_log.svg` (~35–40 rings, ~20 strands, 1:3.5 ratio, knot at each end). Blender model remains an option if the procedural result doesn't look right.
+- **Look:** front-only (depth mask — invisible `Underlay` mesh writes to the depth buffer, hides back strands). Net is real mesh geometry (Blender wireframe modifier applied on export) with a flat white `meshBasicMaterial`. No lighting, shadows or other materials.
+- **Geometry:** modelled in Blender and exported as `src/assets/net_3d.glb` (~200 KB, positions only). Two objects: `Net` (the netting, with end knots) and `Underlay` (a slightly smaller closed mesh used only as the depth mask). Long axis is X; loaded with drei `useGLTF` and scaled up in code (`MODEL_SCALE`). The earlier procedural capsule approach (rings + strands + seeded noise via drei `<Line>`) was tried and dropped because the result wasn't good enough.
 - **Stack additions:** `three`, `@react-three/fiber`, `@react-three/drei` — nothing else
 - **Fallback:** static `biscuit_log.svg` for no-WebGL, loading state, and `prefers-reduced-motion`
 
 ### Build order (prototype before integrating)
 
-- [ ] **Step 1 — Prototype:** build net geometry in a standalone `src/components/NetPrototype.tsx` with a rotation slider. Get the shape, proportions and wonk right against the reference SVG. Stop and review.
+- [x] **Step 1 — Prototype:** load the Blender model in a standalone `src/components/NetPrototype.tsx` with sliders for spin plus camera (fov, zoom) and log tilt (yaw, pitch). Shape, proportions and end knots reviewed and approved. Camera settled on **fov 20** (zoom 1, no yaw/pitch).
 - [ ] **Step 2 — Scroll:** replace slider with scroll-driven rotation + easing. Review feel.
 - [ ] **Step 3 — Integrate:** lazy-load into `NettingFigure.tsx`, wire up fallback, remove prototype component.
 - [ ] **Step 4 — Performance:** confirm `frameloop="demand"`, dpr capped at `[1, 2]`, pause offscreen with IntersectionObserver. Test on a mid-range phone; re-run Lighthouse.
