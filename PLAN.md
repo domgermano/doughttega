@@ -160,7 +160,7 @@ Then style each section, **stop for QA** after each:
 ### Build order (prototype before integrating)
 
 - [x] **Step 1 — Prototype:** load the Blender model in a standalone `src/components/NetPrototype.tsx` with sliders for spin plus camera (fov, zoom) and log tilt (yaw, pitch). Shape, proportions and end knots reviewed and approved. Camera settled on **fov 20** (zoom 1, no yaw/pitch).
-- [ ] **Step 2 — Scroll:** replace slider with scroll-driven rotation + easing. Review feel.
+- [x] **Step 2 — Scroll:** replaced the slider with scroll-driven momentum (scroll deltas add angular velocity, friction decays it; native passive scroll listener, refs only, `frameloop="demand"`, no new deps). Tuned values: gain 0.05, friction 1, max velocity 2 rad/s. Camera distance 8 at fov 20. Fixed-spin mode kept in the prototype as a fallback if performance disappoints on mobile.
 - [ ] **Step 3 — Integrate:** lazy-load into `NettingFigure.tsx`, wire up fallback, remove prototype component.
 - [ ] **Step 4 — Performance:** confirm `frameloop="demand"`, dpr capped at `[1, 2]`, pause offscreen with IntersectionObserver. Test on a mid-range phone; re-run Lighthouse.
 
