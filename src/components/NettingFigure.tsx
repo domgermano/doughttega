@@ -1,6 +1,14 @@
-import { Component, lazy, Suspense, useState, type ReactNode } from "react";
+import {
+  Component,
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import styled from "styled-components";
 import biscuitLog from "../assets/biscuit_log.svg";
+import { whenIdle } from "../utils/whenIdle";
 import Text from "./layout/Text";
 
 // three.js is heavy, so it only loads once the page is up (separate chunk).
@@ -127,8 +135,16 @@ function prefersReducedMotion() {
 
 function NettingFigure() {
   // Checked once on mount; if either fails we never load three.js at all.
-  const [use3d] = useState(() => !prefersReducedMotion() && canUseWebGL());
+  const [capable] = useState(() => !prefersReducedMotion() && canUseWebGL());
+  // Only start loading three.js once the page has loaded and gone idle, so it
+  // never competes with first paint. The static SVG shows until then.
+  const [use3d, setUse3d] = useState(false);
   const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!capable) return;
+    return whenIdle(() => setUse3d(true));
+  }, [capable]);
 
   return (
     <NettingSection>

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+// three's own loader instead of drei's useGLTF: drei pulls ~700 KB of
+// unrelated helpers into the bundle.
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import netUrl from "../assets/net_3d.glb";
 
 // --- 3D net (modelled in Blender, see src/assets/net_3d.glb) ---
@@ -36,22 +38,50 @@ export type NetMode = "scroll" | "spin";
 
 // Positions the camera so the log fits the canvas at any aspect ratio.
 function CameraRig() {
+  const set = useThree((s) => s.set);
   const aspect = useThree((s) => s.size.width / s.size.height);
-  const halfFov = (CAMERA_FOV / 2) * (Math.PI / 180);
-  const visibleHeight = Math.max(FIT_HEIGHT, FIT_WIDTH / aspect);
-  const distance = visibleHeight / 2 / Math.tan(halfFov);
 
-  return (
-    <PerspectiveCamera makeDefault fov={CAMERA_FOV} position={[0, 0, distance]} />
-  );
+  useEffect(() => {
+    const halfFov = (CAMERA_FOV / 2) * (Math.PI / 180);
+    const visibleHeight = Math.max(FIT_HEIGHT, FIT_WIDTH / aspect);
+    const camera = new THREE.PerspectiveCamera(CAMERA_FOV, aspect, 0.1, 100);
+    camera.position.set(0, 0, visibleHeight / 2 / Math.tan(halfFov));
+    set({ camera });
+  }, [set, aspect]);
+
+  return null;
+}
+
+// True while the canvas is on (or just next to) the screen. Held in a ref so
+// changes never cause a React re-render. When it flips back to visible we
+// wake the demand loop so the log redraws immediately.
+function useOnScreen() {
+  const canvas = useThree((s) => s.gl.domElement);
+  const invalidate = useThree((s) => s.invalidate);
+  const onScreen = useRef(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        onScreen.current = entry.isIntersecting;
+        if (entry.isIntersecting) invalidate();
+      },
+      { rootMargin: "100px" }, // start slightly before it scrolls into view
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, [canvas, invalidate]);
+
+  return onScreen;
 }
 
 function Net({ mode }: { mode: NetMode }) {
   const spinRef = useRef<THREE.Group>(null);
   const invalidate = useThree((s) => s.invalidate);
-  const { nodes } = useGLTF(netUrl) as unknown as {
-    nodes: Record<string, THREE.Mesh>;
-  };
+  const gltf = useLoader(GLTFLoader, netUrl);
+  const underlay = gltf.scene.getObjectByName("Underlay") as THREE.Mesh;
+  const net = gltf.scene.getObjectByName("Net") as THREE.Mesh;
+  const onScreen = useOnScreen();
 
   // Motion state lives in a ref, so scrolling never causes a React re-render.
   const velocity = useRef(0);
@@ -63,6 +93,7 @@ function Net({ mode }: { mode: NetMode }) {
     const onScroll = () => {
       const delta = window.scrollY - lastY;
       lastY = window.scrollY;
+      if (!onScreen.current) return; // offscreen: don't spin, don't render
       velocity.current = THREE.MathUtils.clamp(
         velocity.current + delta * GAIN,
         -MAX_VELOCITY,
@@ -72,13 +103,18 @@ function Net({ mode }: { mode: NetMode }) {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [invalidate, mode]);
+  }, [invalidate, mode, onScreen]);
 
   // Every frame: move, apply friction, and keep rendering only while moving.
   // `dt` is in seconds, so speed is the same at 60Hz and 120Hz.
   useFrame((_, dt) => {
     const group = spinRef.current;
     if (!group) return;
+
+    if (!onScreen.current) {
+      velocity.current = 0; // scrolled away mid-coast: stop, no more frames
+      return;
+    }
 
     if (mode === "spin") {
       group.rotation.x += SPIN_SPEED * dt;
@@ -99,12 +135,12 @@ function Net({ mode }: { mode: NetMode }) {
         Writes depth but not colour, so back strands fail the depth test
         and are hidden, giving a front-only look.
       */}
-      <mesh geometry={nodes.Underlay.geometry} renderOrder={0}>
+      <mesh geometry={underlay.geometry} renderOrder={0}>
         <meshBasicMaterial colorWrite={false} side={THREE.FrontSide} />
       </mesh>
 
       {/* The net itself: flat, unlit colour. */}
-      <mesh geometry={nodes.Net.geometry} renderOrder={1}>
+      <mesh geometry={net.geometry} renderOrder={1}>
         <meshBasicMaterial color={NET_COLOR} />
       </mesh>
     </group>
@@ -117,7 +153,10 @@ type NetCanvasProps = {
   onReady?: () => void;
 };
 
-export default function NetCanvas({ mode = "scroll", onReady }: NetCanvasProps) {
+export default function NetCanvas({
+  mode = "scroll",
+  onReady,
+}: NetCanvasProps) {
   return (
     <Canvas
       frameloop="demand"
