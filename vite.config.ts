@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   base: "/doughttega/",
+  assetsInclude: ["**/*.glb"],
   test: {
     environment: "node",
   },
