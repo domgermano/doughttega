@@ -55,7 +55,7 @@ function HowToEat() {
     <Panel>
       <PanelTitle>
         <Text skin="h4" as="h2" uppercase>
-          How to eat:
+          How to prepare:
         </Text>
       </PanelTitle>
       <PanelSubtitle>
@@ -86,7 +86,7 @@ function BakesAndServes() {
     <Panel>
       <PanelTitle>
         <Text skin="h4" as="h2" uppercase>
-          Bakes &amp; Serves:
+          Serving suggestion:
         </Text>
       </PanelTitle>
       <PanelSubtitle>

@@ -142,9 +142,9 @@ Then style each section, **stop for QA** after each:
 - [x] Optimise images and SVGs; check bundle size
 - [x] Lighthouse pass (aim 90+)
 - [x] Test Safari/iOS, Chrome, Firefox
-- [ ] Check the live URL, template download, and all market info once more
+- [x] Check the live URL, template download, and all market info once more
 - [x] Tidy README (run, build, deploy, how to edit `markets.ts`)
-- [ ] **Ship the polished static version**
+- [x] **Ship the polished static version**
 
 ## Phase 5: 3D scroll-driven net
 

@@ -31,7 +31,7 @@ export const markets: Market[] = [
     end: "2026-12-09",
   },
   {
-    name: "Dockland Farmers Market",
+    name: "Docklands Farmers Market",
     dates: "14 Dec",
     start: "2026-12-14",
     end: "2026-12-14",

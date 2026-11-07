@@ -50,9 +50,9 @@ function Header() {
               The Biscuit Deli
             </Text>
             <Text skin="bodyM" as="p">
-              Artisanal biscuit dough. Ready to bake. We&apos;ve reinvented the
-              deli drawer — think charcuterie, but with biscuit dough! Coming to
-              a market near you.
+              We've reinvented the deli drawer. Think charcuterie, but with
+              artisanal biscuit dough that's ready to bake. Coming to a market
+              near you.
             </Text>
           </HeaderText>
           <div />
