@@ -24,7 +24,7 @@ npm run preview     # serve the built output locally
 ## Deploy
 
 Push to `main` — GitHub Actions builds and deploys automatically. Live at:
-https://domgermano.github.io/doughttega/
+https://doughttega.com.au/
 
 ## Editing content
 
