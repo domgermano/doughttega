@@ -68,7 +68,7 @@ This applies to **Phases 2 and 3**, as two separate passes over the same seven s
 - [x] Add `.github/workflows/deploy.yml` (build → `actions/upload-pages-artifact` → `actions/deploy-pages`)
 - [x] Settings → Pages → Source: GitHub Actions
 - [x] **Deploy the empty skeleton now** and confirm the live URL works
-- [ ] Custom domain (optional): `public/CNAME`, DNS records, enforce HTTPS
+- [x] Custom domain (optional): `public/CNAME`, DNS records, enforce HTTPS
 
 ## Phase 2: Build: functionality, structure and layout (unstyled), one section at a time
 
