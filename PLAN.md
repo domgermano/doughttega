@@ -131,8 +131,10 @@ Then style each section, **stop for QA** after each:
 
 ## Phase 4: Analytics and launch polish → **LAUNCH**
 
-- [ ] Add analytics script to `index.html` (cookie-free tool chosen in Phase 0)
+- [x] Add analytics script to `index.html` (cookie-free tool chosen in Phase 0)
 - [ ] Track custom events: template download click, "See more" toggle
+  - [x] "See more" / "See less" toggle (`data-umami-event` in `MarketGrid.tsx`)
+  - [ ] Template download click (button currently commented out in `Instructions.tsx`)
 - [x] `<title>`, meta description, `lang="en-AU"`, theme-color
 - [x] Open Graph / Twitter card image
 - [x] Favicon + apple-touch-icon from logo

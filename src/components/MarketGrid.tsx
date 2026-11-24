@@ -136,6 +136,7 @@ function MarketGrid() {
             <Button
               $color="darkGreen"
               aria-expanded={expanded}
+              data-umami-event={expanded ? "markets-see-less" : "markets-see-more"}
               onClick={() => setExpanded((e) => !e)}
             >
               {expanded ? "See less" : "See more"}
