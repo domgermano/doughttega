@@ -3,10 +3,10 @@ import type { DefaultTheme } from "styled-components";
 import { steps, stepsIntro } from "../data/steps";
 import { serveItems, servesIntro, storageNote } from "../data/serves";
 import BoundedBox from "./layout/BoundedBox";
-import Button from "./layout/Button";
 import Grid from "./layout/Grid";
 import Text from "./layout/Text";
-import DownloadIcon from "./icons/DownloadIcon";
+// import Button from "./layout/Button";
+// import DownloadIcon from "./icons/DownloadIcon";
 
 type SpaceKey = keyof DefaultTheme["space"];
 
@@ -31,12 +31,17 @@ const PanelSubtitle = styled.div`
 
 const PanelBody = styled.div<{ $gap?: SpaceKey }>`
   flex: 1;
-  padding: ${(p) => p.theme.space[5]};
+  padding: ${(p) => p.theme.space[6]};
   border: 1px solid ${(p) => p.theme.colors.mint};
 
   ol,
   ul {
     padding-inline-start: ${(p) => p.theme.space[6]};
+  }
+
+  /* Extra room so the two-digit marker (10.) clears the left border */
+  ol {
+    padding-inline-start: ${(p) => p.theme.space[7]};
   }
 
   ${(p) =>
@@ -55,7 +60,7 @@ function HowToEat() {
     <Panel>
       <PanelTitle>
         <Text skin="h4" as="h2" uppercase>
-          How to prepare:
+          How to bake:
         </Text>
       </PanelTitle>
       <PanelSubtitle>
@@ -76,10 +81,10 @@ function HowToEat() {
 
 // --- Bakes & serves ---
 
-const DownloadLink = styled(Button)`
-  width: 100%;
-  text-decoration: none;
-`;
+// const DownloadLink = styled(Button)`
+//   width: 100%;
+//   text-decoration: none;
+// `;
 
 function BakesAndServes() {
   return (
@@ -103,14 +108,14 @@ function BakesAndServes() {
         <Text skin="bodyS" as="p">
           {storageNote}
         </Text>
-        <DownloadLink
+        {/* <DownloadLink
           as="a"
           $color="mustard"
           href={`${import.meta.env.BASE_URL}gingerbread-house-template.pdf`}
           download
         >
           <DownloadIcon /> Gingerbread house template
-        </DownloadLink>
+        </DownloadLink> */}
       </PanelBody>
     </Panel>
   );

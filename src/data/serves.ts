@@ -1,10 +1,11 @@
-export const servesIntro = "1 to 4 hungry people:";
+export const servesIntro = "1 Doughttega log makes:";
 
 export const serveItems = [
-  "20 “normal” sized biscuits",
-  '40 totally normal "little" biscuits',
-  "1 small gingerbread house",
-  "2 very small gingerbread houses... What is this? a gingerbread house for ants!?",
+  "20 (or so) merry gingerbread people",
+  "40 (or so) stars and snowflakes",
+  "1 compact and cosy gingerbread house",
+  "If you have 2-3 logs in hand: a villa or castle with a view!",
 ];
 
-export const storageNote = "Keep refrigerated. Stays fresh for 10 days.";
+export const storageNote =
+  "Keep refrigerated! It’ll keep fresh and ready to use by the used-by-date on the tag. If you need more time, pop it in the freezer for up to 3 months. Defrost in the fridge when you’re ready to bake.";
